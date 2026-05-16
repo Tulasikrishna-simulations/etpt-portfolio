@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ETPT — S R Tulasi Krishna</title>
+<meta name="description" content="Evolutionary Technology Path Theory by S R Tulasi Krishna — Hospet, 2024–25"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#04080f;color:#dde4f0;font-family:'DM Sans',system-ui,sans-serif;line-height:1.7}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#04080f}::-webkit-scrollbar-thumb{background:#1e2d45;border-radius:4px}
+
+/* layout */
+.bg-grid{position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(96,165,250,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.022) 1px,transparent 1px);background-size:52px 52px;z-index:0}
+.bg-glow{position:fixed;top:-300px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(96,165,250,.045) 0%,transparent 70%);pointer-events:none;z-index:0}
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(18px,5vw,60px) 100px;position:relative;z-index:1}
+
+/* nav */
+nav{position:sticky;top:0;z-index:200;background:rgba(4,8,15,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.055);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,5vw,60px)}
+.nbrand{font-family:'JetBrains Mono',monospace;font-size:12px;color:#60a5fa;letter-spacing:.5px}
+.nbrand em{color:#3d5a7a;font-style:normal}
+.nlinks{display:flex;gap:2px}
+.nlinks a{color:#4a6080;font-size:11px;font-family:'JetBrains Mono',monospace;text-decoration:none;padding:5px 10px;border-radius:5px;transition:color .2s;cursor:pointer}
+.nlinks a:hover{color:#94a3b8}
+
+/* typography */
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#60a5fa;display:block;margin-bottom:12px}
+h2{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,3.5vw,36px);font-weight:400;letter-spacing:-.5px;color:#f0f4ff;margin-bottom:18px;line-height:1.15}
+h3{font-size:16px;font-weight:600;color:#c8d8f0;margin-bottom:10px}
+p{color:#8da0ba;font-size:15px;line-height:1.8;margin-bottom:14px}
+p:last-child{margin-bottom:0}
+em.hl{font-style:normal;color:#dde4f0}
+strong{color:#c8d8f0;font-weight:600}
+
+/* spacing */
+section{margin-bottom:80px}
+.rule{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.07),transparent);margin:60px 0}
+
+/* cards */
+.card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.065);border-radius:12px;padding:18px 20px}
+.card-blue{background:rgba(96,165,250,.05);border:1px solid rgba(96,165,250,.18);border-radius:12px;padding:18px 20px}
+.card-orange{background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.18);border-radius:12px;padding:18px 20px}
+.card-highlight{background:rgba(96,165,250,.04);border-left:3px solid #60a5fa;border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0}
+.card-quote{background:rgba(255,255,255,.02);border-left:3px solid rgba(96,165,250,.4);padding:16px 22px;border-radius:0 8px 8px 0;margin:20px 0}
+
+/* grids */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ghalf{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+
+/* mono */
+.mono{font-family:'JetBrains Mono',monospace}
+.code-block{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#60a5fa;margin:16px 0;overflow-x:auto}
+
+/* equation display */
+.eq-hero{display:inline-flex;align-items:center;padding:14px 22px;background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.22);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:16px;color:#60a5fa;margin-bottom:20px}
+.eq-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#3d5a7a;font-family:'JetBrains Mono',monospace;margin-bottom:6px}
+
+/* sim */
+.sim-wrap{background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px 20px;margin-bottom:16px}
+.sim-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:12px}
+.slider-row{display:flex;align-items:center;gap:10px}
+.slider-row span{font-size:11px;color:#4a6080;font-family:'JetBrains Mono',monospace}
+.slider-row input{width:120px;accent-color:#60a5fa}
+.sval{font-size:13px;color:#60a5fa;font-family:'JetBrains Mono',monospace;min-width:24px}
+.comfort-note{margin-top:14px;padding:10px 15px;background:rgba(251,146,60,.06);border:1px solid rgba(251,146,60,.2);border-radius:8px;font-size:12px;color:#fb923c;font-family:'JetBrains Mono',monospace}
+
+/* civ cards */
+.civ-card{padding:15px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;cursor:pointer;transition:all .2s;user-select:none}
+.cdot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0}
+.civ-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.civ-name{font-size:13px;font-weight:600;color:#dde4f0}
+.civ-params{display:flex;gap:16px;margin-bottom:9px}
+.cpv{font-size:18px;font-weight:700;line-height:1}
+.cpk{font-size:9px;color:#4a6080;font-family:'JetBrains Mono',monospace}
+.ctxt{font-size:11px;color:#4a6080;line-height:1.55}
+
+/* radar / tax */
+.radar-box{background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.065);border-radius:14px;padding:18px 14px}
+.rleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.rli{display:flex;align-items:center;gap:6px;cursor:pointer;transition:opacity .2s;user-select:none}
+.rld{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.rll{font-size:11px;color:#8da0ba}
+.tax-card{padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:10px;cursor:pointer;transition:all .2s;margin-bottom:9px;user-select:none}
+.tax-head{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.tname{font-size:13px;font-weight:600;color:#dde4f0}
+.tsub{font-size:10px;color:#4a6080;font-family:'JetBrains Mono',monospace}
+.tdom{font-size:12px;color:#4a6080;line-height:1.55;margin-bottom:4px}
+.tbio{font-size:13px;color:#8da0ba;line-height:1.7;border-top:1px solid rgba(255,255,255,.05);padding-top:10px;margin-top:10px;display:none}
+
+/* table */
+.etpt-table{width:100%;border-collapse:collapse;font-size:13px;margin:20px 0}
+.etpt-table th{text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a6080;font-family:'JetBrains Mono',monospace;border-bottom:1px solid rgba(255,255,255,.07);font-weight:500}
+.etpt-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;color:#8da0ba;font-size:13px}
+.etpt-table td:first-child{font-family:'JetBrains Mono',monospace;color:#60a5fa;font-size:12px;white-space:nowrap}
+.etpt-table tr:last-child td{border-bottom:none}
+.etpt-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* inference */
+.inf-card{padding:18px 20px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.inf-icon{font-size:20px;margin-bottom:10px}
+.inf-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;color:#4a6080;margin-bottom:6px}
+.inf-sig{font-size:13px;color:#c8d8f0;margin-bottom:12px;line-height:1.6}
+.inf-arch{font-size:13px;color:#8da0ba}
+
+/* blueprint */
+.blueprint{background:rgba(0,0,0,.3);border:1px solid rgba(96,165,250,.12);border-radius:12px;padding:16px 20px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:12px}
+.bp-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#3d5a7a;margin-bottom:10px}
+.bp-items{display:flex;flex-wrap:wrap;gap:8px}
+.bp-item{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.15);border-radius:6px;padding:5px 10px;font-size:11px;color:#60a5fa}
+
+/* origin */
+.origin-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
+.okey{font-size:10px;color:#2a4060;font-family:'JetBrains Mono',monospace;min-width:90px;padding-top:2px;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.oval{font-size:13px;color:#8da0ba;line-height:1.65}
+
+/* fade in */
+.page{opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s ease}
+.page.show{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:640px){.ghalf{grid-template-columns:1fr}.nlinks{display:none}.eq-hero{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="nbrand">ETPT <em>·</em> S R Tulasi Krishna</div>
+  <div class="nlinks">
+    <a onclick="goto('start')">Intro</a>
+    <a onclick="goto('theory')">Theory</a>
+    <a onclick="goto('equation')">Equation</a>
+    <a onclick="goto('simulation')">Simulation</a>
+    <a onclick="goto('archetypes')">Archetypes</a>
+    <a onclick="goto('tsukuba')">Tsukuba</a>
+  </div>
+</nav>
+
+<div class="wrap page" id="page">
+
+  <!-- ══ HERO ══ -->
+  <section id="start" style="padding-top:80px">
+    <span class="section-tag">Independent Research · Hospet, Karnataka · 2024–25</span>
+    <h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(40px,6.5vw,74px);font-weight:400;letter-spacing:-2px;line-height:1;margin:0 0 28px;color:#f0f4ff">
+      Evolutionary<br><span style="color:#60a5fa">Technology</span><br>Path Theory
+    </h1>
+    <p style="max-width:520px;font-size:16px;color:#7a90a8;margin-bottom:10px">
+      I built this theory during a drop year in Hospet — no laptop, no lab, no institutional access.
+      It started with a panda. It ended with an equation for why every intelligent species builds
+      a completely different kind of technology.
+    </p>
+    <p style="max-width:520px;font-size:14px;color:#3d5a7a;margin-bottom:36px">
+      — S R Tulasi Krishna, Hospet 2024
+    </p>
+    <div class="eq-hero">
+      T<sub style="font-size:10px">path</sub>&nbsp;=&nbsp;(B&nbsp;⊗&nbsp;P)&nbsp;·&nbsp;D&nbsp;·&nbsp;(1&nbsp;−&nbsp;e<sup style="font-size:10px">−αS</sup>)
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ HOW IT STARTED ══ -->
+  <section>
+    <span class="section-tag">How It Started</span>
+    <h2>It Began With a Panda</h2>
+
+    <p>So here's the thing — I was sitting in Hospet, going through research on Japanese universities for a MEXT scholarship. Just reading. Not looking for a theory at all.</p>
+
+    <p>Then I saw a news clip. China was recalling its giant pandas from Japan, right in the middle of rising geopolitical tension. And what got me wasn't the politics. It was the footage of Japanese people at the zoo, <em class="hl">visibly emotional, saying goodbye to the pandas like they were family.</em></p>
+
+    <p>I didn't understand that reaction. So I started asking why.</p>
+
+    <div class="card-highlight">
+      <h3>What I found about pandas was strange</h3>
+      <p>In the wild, pandas are biologically functional. Narrow mating window, yes — but wild populations maintained themselves. They responded to seasons, navigated terrain, survived real conditions.</p>
+      <p style="margin-top:10px">But zoo pandas had stopped doing almost all of this. Breeding rates collapsed. Environmental engagement dulled. The zoo hadn't saved them. <em class="hl">It had frozen them.</em> By removing every survival pressure — predators, food scarcity, competition — the zoo switched off the evolutionary machinery that keeps a species actively alive.</p>
+    </div>
+
+    <p>I called this the <strong>Comfort Trap</strong> and wrote it down. Then came the question that broke everything open:</p>
+
+    <div class="card-quote">
+      <p style="color:#c8d8f0;font-size:15px;font-style:italic">"If humans put the panda in a comfort trap with our technology — what kind of technology would a panda civilization have built, if pandas had become dominant instead of us?"</p>
+    </div>
+
+    <p>The question sounds absurd. But the absurdity of the specific case doesn't kill the structure of the question. What it reveals is this: <em class="hl">human technology is not the inevitable output of high intelligence. It is the output of a specific body, perceiving the world through specific senses, under specific evolutionary pressures.</em> Change the body — you change everything.</p>
+
+    <p>That was the seed. The next weeks were just following the chain wherever it led.</p>
+
+    <div class="g2" style="margin-top:24px">
+      <div class="card">
+        <span class="section-tag" style="margin-bottom:6px">The Panda</span>
+        <p style="font-size:13px">When resources are guaranteed and predators are gone, the biological drive to push limits disappears. Evolutionary stagnation follows — not from stupidity, but from comfort.</p>
+      </div>
+      <div class="card">
+        <span class="section-tag" style="margin-bottom:6px">The Human Parallel</span>
+        <p style="font-size:13px">Social media removes consequence. Delivery apps remove scarcity. Algorithmic feeds remove the need to seek. <em class="hl">We built our own zoo — and we are the pandas inside it.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ THE MIRROR RULE ══ -->
+  <section id="theory">
+    <span class="section-tag">Core Theory</span>
+    <h2>The Mirror Rule — Technology as Biological Footprint</h2>
+
+    <p>Here's the central idea. Technology is not a universal constant that all intelligent life eventually discovers. <em class="hl">It is a mirror of the species that creates it</em> — the physical extension of a body's capabilities and a perception system's limits.</p>
+
+    <p>Change the body. Change the mirror. Change the entire civilizational output.</p>
+
+    <h3 style="color:#60a5fa;margin-top:28px">The Human Path — Hand and Eye</h3>
+
+    <p>Humans are physically weak. No claws, no armour, no natural weapons. Because our bodies can't do what we need, we built <em class="hl">extensions</em>: levers, cranes, hammers, engines. Every mechanical technology we have is compensation for physical inadequacy.</p>
+
+    <p>Our visual system sees a narrow 120-degree 2D plane in front of us — so we built <em class="hl">flat screens, linear books, rectangular interfaces</em>. Our opposable thumbs gave us fine motor control — so we built keyboards, touchscreens, surgical instruments.</p>
+
+    <p>Human technology is, at its root, a <strong>Hand-and-Eye civilisation</strong>.</p>
+
+    <div class="blueprint">
+      <div class="bp-label">Blueprint 01 — Anthropogenic (Human) Technology</div>
+      <div class="bp-items">
+        <span class="bp-item">Visual Display Unit (Flat Screen)</span>
+        <span class="bp-item">Symbolic Input Device (Keyboard)</span>
+        <span class="bp-item">Mechanical Lever (Force Multiplier)</span>
+        <span class="bp-item">Digital Computation Network</span>
+      </div>
+      <p style="font-size:11px;color:#3d5a7a;margin-top:10px;margin-bottom:0">All derived directly from the hand-and-eye biological architecture.</p>
+    </div>
+
+    <h3 style="color:#60a5fa;margin-top:28px">The Avian Path — Wing and Frequency</h3>
+
+    <p>Imagine an intelligent bird species. Wings and beaks — no opposable thumbs. They navigate using 360-degree vision, magnetic field sensing, and barometric pressure gradients.</p>
+
+    <p>They would <em class="hl">never invent a keyboard</em> — they have nothing precise enough to type with. Their internet would not run on fibre optic cables. It would run on <em class="hl">acoustic pressure gradients and magnetic resonance networks embedded in geography</em>. Their technology would be a <strong>Wing-and-Frequency civilisation</strong> — navigation-first, wave-based, distributed across the planet's magnetic field rather than centralised in server farms.</p>
+
+    <div class="card-highlight">
+      <h3 style="color:#fb923c">The Perception Barrier</h3>
+      <p>If humans found a piece of Bird Technology, we might replicate its physical shape. But we could never replicate the original thought behind it. <em class="hl">We are locked out of their creative process because we do not perceive the magnetic fields they used to think the tool into existence.</em></p>
+      <p style="margin-top:8px">The barrier is not intelligence. It is perception. This is the core claim of ETPT.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ THE EQUATION ══ -->
+  <section id="equation">
+    <span class="section-tag">Mathematical Architecture</span>
+    <h2>The Unified Equation for Technological Divergence</h2>
+
+    <p>To formalise the Mirror Rule, I needed to separate two things that all previous models collapse into one: <em class="hl">direction</em> (what kind of technology a species builds) and <em class="hl">intensity</em> (how fast it develops). They need different treatment because they have completely different causes.</p>
+
+    <div style="text-align:center;margin:32px 0">
+      <div class="eq-label">The Unified ETPT Equation</div>
+      <div class="eq-hero" style="font-size:clamp(14px,2.5vw,20px)">
+        T<sub style="font-size:11px">path</sub>&nbsp;=&nbsp;(B&nbsp;⊗&nbsp;P)&nbsp;·&nbsp;D&nbsp;·&nbsp;(1&nbsp;−&nbsp;e<sup style="font-size:11px">−αS</sup>)
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="card-blue">
+        <span class="section-tag" style="color:#60a5fa">Part 1 — Direction</span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#60a5fa;margin-bottom:12px">T<sub style="font-size:11px">dir</sub> = B ⊗ P</div>
+        <p style="font-size:13px">B and P are vectors — biological capability and perceptual range. Their <strong>tensor product</strong> gives the direction of the technology path. This is what separates bat civilization from ant civilization before any development even begins.</p>
+        <p style="font-size:13px;margin-top:8px">Different B⊗P = different region of possibility space. Simple.</p>
+      </div>
+      <div class="card-orange">
+        <span class="section-tag" style="color:#fb923c">Part 2 — Intensity</span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#fb923c;margin-bottom:12px">T<sub style="font-size:11px">mag</sub> = D · (1 − e<sup style="font-size:11px">−αS</sup>)</div>
+        <p style="font-size:13px">When S → 0, T_mag → 0. That's the <strong>Comfort Trap</strong> in equation form. No survival pressure means no developmental drive — regardless of how intelligent the species is.</p>
+        <p style="font-size:13px;margin-top:8px">Peak development needs <em class="hl">both</em> pressure (S) and ecological stability (D) to scale.</p>
+      </div>
+    </div>
+
+    <!-- ODE Derivation -->
+    <div style="margin-top:36px">
+      <h3>Where the Intensity Term Came From</h3>
+      <p>The (1 − e<sup>−αS</sup>) term wasn't borrowed from any known model. I derived it from scratch because I noticed something obvious once I thought about it carefully:</p>
+
+      <div class="card-quote">
+        <p style="color:#c8d8f0"><em>Technological growth can't be linear — because a civilisation approaching saturation grows slower, not faster. The rate of innovation is proportional to how much room for innovation remains.</em></p>
+        <p style="font-size:12px;color:#4a6080;margin-top:6px">That single observation gave me the ODE. I integrated it by hand in my notebook in Hospet.</p>
+      </div>
+
+      <div class="code-block">
+<span style="color:#4a6080">// Step 1 — The ODE</span>
+dT/dS = α · (T_max − T)
+
+<span style="color:#4a6080">// Step 2 — Integrate both sides</span>
+∫ dT/(T_max − T) = ∫ α dS
+
+<span style="color:#4a6080">// Step 3 — Result</span>
+T(S) = T_max · (1 − e^(−αS))
+
+<span style="color:#4a6080">// Eden Condition (S → 0)</span>
+T(0) = 0  →  Comfort Trap. Zero pressure, zero output.
+
+<span style="color:#4a6400">// Extinction Condition (S → ∞)</span>
+T(∞) = (B⊗P)·D  →  Species hits its biological hardware ceiling.</div>
+
+      <p style="font-size:13px;color:#4a6080;text-align:center;font-style:italic">The handwritten original of this derivation exists in my notebook from Hospet, 2024.</p>
+    </div>
+
+    <!-- Variable table -->
+    <div style="margin-top:36px">
+      <h3>What Each Variable Actually Means</h3>
+      <p>Everything is dimensionless and normalised to [0,1] — so civilizations with completely different biologies can still be compared on the same scale.</p>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="etpt-table">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>What it is</th>
+              <th>Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>T_path</td>
+              <td>The final technological development index — composite output of the whole equation</td>
+              <td style="color:#4a6080;white-space:nowrap">0 to 1</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>Biological Capability Vector — ratio of the species' sensory-motor capability to the theoretical biological maximum</td>
+              <td style="color:#4a6080">0 to 1</td>
+            </tr>
+            <tr>
+              <td>P</td>
+              <td>Perception Range Vector — ratio of detectable stimulus range to total physically possible stimulus range</td>
+              <td style="color:#4a6080">0 to 1</td>
+            </tr>
+            <tr>
+              <td>B ⊗ P</td>
+              <td>Bio-Perception Tensor — encodes the <em class="hl">direction</em> of development. Each unique B⊗P maps to a distinct civilizational domain</td>
+              <td style="color:#4a6080">0 to 1</td>
+            </tr>
+            <tr>
+              <td>D</td>
+              <td>Dominance Ratio — ecological dominance: N_species / N_total competing species in the niche</td>
+              <td style="color:#4a6080">0 to 1</td>
+            </tr>
+            <tr>
+              <td>S</td>
+              <td>Survival Pressure Ratio — observed mortality rate / baseline mortality rate. This is what the Comfort Trap acts on</td>
+              <td style="color:#4a6080">0 to ∞</td>
+            </tr>
+            <tr>
+              <td>α</td>
+              <td>Species Adaptation Constant — intrinsic pressure-responsiveness. Species-specific, not universally derivable. Honestly acknowledged as not yet measurable</td>
+              <td style="color:#4a6080">0 to 1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ SIMULATION ══ -->
+  <section id="simulation">
+    <span class="section-tag">Interactive Simulation</span>
+    <h2>See the Comfort Trap in Action</h2>
+
+    <p>This is the equation visualised. Each curve shows how a civilization's development intensity changes as survival pressure changes. The key thing to watch: <em class="hl">drag the slider toward zero and watch every single civilization collapse to nothing</em> — regardless of how smart or dominant they are. That's the Comfort Trap.</p>
+
+    <p>Click any civilization card below the chart to isolate its curve.</p>
+
+    <div class="sim-wrap">
+      <div class="sim-top">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#60a5fa">
+          T<sub>mag</sub> = D · (1 − e<sup>−αS</sup>)
+        </div>
+        <div class="slider-row">
+          <span>Survival Pressure max</span>
+          <input type="range" min="2" max="20" step="0.5" value="12" id="sSlider" oninput="updateCurve()"/>
+          <span class="sval" id="sVal">12</span>
+        </div>
+      </div>
+      <div style="position:relative;width:100%;height:300px">
+        <canvas id="curveChart"></canvas>
+      </div>
+      <div class="comfort-note">◆ COMFORT TRAP — Push S toward 0 and watch all civilizations flatline. Intelligence doesn't save you from zero pressure.</div>
+    </div>
+
+    <div class="g4" id="civCards">
+      <div class="civ-card" onclick="toggleCiv('human')" id="cc-human">
+        <div class="civ-head"><span class="cdot" style="background:#60a5fa"></span><span class="civ-name">Human</span></div>
+        <div class="civ-params">
+          <div><div class="cpv" style="color:#60a5fa">0.45</div><div class="cpk">α — responsiveness</div></div>
+          <div><div class="cpv" style="color:#60a5fa">0.9</div><div class="cpk">D — dominance</div></div>
+        </div>
+        <div class="ctxt">High dominance, moderate pressure-responsiveness. Strong development but vulnerable to comfort traps.</div>
+      </div>
+      <div class="civ-card" onclick="toggleCiv('ant')" id="cc-ant">
+        <div class="civ-head"><span class="cdot" style="background:#fb923c"></span><span class="civ-name">Ant Swarm</span></div>
+        <div class="civ-params">
+          <div><div class="cpv" style="color:#fb923c">0.85</div><div class="cpk">α — responsiveness</div></div>
+          <div><div class="cpv" style="color:#fb923c">0.7</div><div class="cpk">D — dominance</div></div>
+        </div>
+        <div class="ctxt">Extremely high pressure-responsiveness — the swarm adapts fast but caps lower due to less ecological dominance.</div>
+      </div>
+      <div class="civ-card" onclick="toggleCiv('bat')" id="cc-bat">
+        <div class="civ-head"><span class="cdot" style="background:#c084fc"></span><span class="civ-name">Bat</span></div>
+        <div class="civ-params">
+          <div><div class="cpv" style="color:#c084fc">0.30</div><div class="cpk">α — responsiveness</div></div>
+          <div><div class="cpv" style="color:#c084fc">0.6</div><div class="cpk">D — dominance</div></div>
+        </div>
+        <div class="ctxt">Slow to respond to pressure but highly specialised. Development in acoustic domains would be deep rather than broad.</div>
+      </div>
+      <div class="civ-card" onclick="toggleCiv('octopus')" id="cc-octopus">
+        <div class="civ-head"><span class="cdot" style="background:#4ade80"></span><span class="civ-name">Octopus</span></div>
+        <div class="civ-params">
+          <div><div class="cpv" style="color:#4ade80">0.60</div><div class="cpk">α — responsiveness</div></div>
+          <div><div class="cpv" style="color:#4ade80">0.8</div><div class="cpk">D — dominance</div></div>
+        </div>
+        <div class="ctxt">Balanced — distributed neural architecture means high adaptability across multiple domains simultaneously.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ THE FOUR ARCHETYPES ══ -->
+  <section id="archetypes">
+    <span class="section-tag">Civilization Taxonomy</span>
+    <h2>The Four Archetypes — Technology Direction Space</h2>
+
+    <p>The tensor product B⊗P generates four maximally distinct civilizational archetypes. Each occupies a <em class="hl">non-overlapping region of technological possibility space</em>. No archetype is superior — each is the correct solution for its own perceptual-biological starting conditions.</p>
+
+    <div class="ghalf" style="margin-top:28px">
+      <!-- Radar -->
+      <div class="radar-box">
+        <div style="font-size:10px;color:#60a5fa;font-family:'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px">B ⊗ P — Perceptual Architecture Space</div>
+        <div style="position:relative;width:100%;height:270px"><canvas id="radarChart"></canvas></div>
+        <div class="rleg">
+          <div class="rli" onclick="toggleRadar('human')"><div class="rld" style="background:#60a5fa"></div><span class="rll">Human</span></div>
+          <div class="rli" onclick="toggleRadar('ant')"><div class="rld" style="background:#fb923c"></div><span class="rll">Ant Swarm</span></div>
+          <div class="rli" onclick="toggleRadar('bat')"><div class="rld" style="background:#c084fc"></div><span class="rll">Bat</span></div>
+          <div class="rli" onclick="toggleRadar('octopus')"><div class="rld" style="background:#4ade80"></div><span class="rll">Octopus</span></div>
+        </div>
+      </div>
+
+      <!-- Tax cards -->
+      <div>
+        <div class="tax-card" onclick="toggleTax(this,'human')">
+          <div class="tax-head"><div style="width:8px;height:8px;border-radius:50%;background:#60a5fa;flex-shrink:0"></div><span class="tname">Human</span><span class="tsub">Symbolic-Mechanical · α=0.45</span></div>
+          <div class="tdom">Digital computation · Symbolic language · Mechanical engineering</div>
+          <div class="tbio">
+            <p style="font-size:13px;margin-bottom:8px">High-node, centralised brain. Individuals are cognitively powerful but socially fragmented. Our internet exists specifically to bridge isolated minds.</p>
+            <div class="blueprint" style="margin:0">
+              <div class="bp-label">What humans actually built</div>
+              <div class="bp-items">
+                <span class="bp-item">Flat Screen Display</span>
+                <span class="bp-item">Keyboard Interface</span>
+                <span class="bp-item">Mechanical Lever</span>
+                <span class="bp-item">Centralised Server Networks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tax-card" onclick="toggleTax(this,'ant')">
+          <div class="tax-head"><div style="width:8px;height:8px;border-radius:50%;background:#fb923c;flex-shrink:0"></div><span class="tname">Ant Swarm</span><span class="tsub">Distributed Superorganism · α=0.85</span></div>
+          <div class="tdom">Bio-coordination · Living structures · Chemical memory systems</div>
+          <div class="tbio">
+            <p style="font-size:13px;margin-bottom:8px">Low-node intelligence. Each individual unit is simple — the collective is a genius. Ants would never build hardware. They would engineer coordinated bio-systems where the swarm itself is the machine.</p>
+            <div class="blueprint" style="margin:0">
+              <div class="bp-label">What ants would actually build</div>
+              <div class="bp-items">
+                <span class="bp-item" style="color:#fb923c;border-color:rgba(251,146,60,.25)">Pheromone Signal Network</span>
+                <span class="bp-item" style="color:#fb923c;border-color:rgba(251,146,60,.25)">Living Bridge (Bio-Structure)</span>
+                <span class="bp-item" style="color:#fb923c;border-color:rgba(251,146,60,.25)">Chemical Memory Register</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tax-card" onclick="toggleTax(this,'bat')">
+          <div class="tax-head"><div style="width:8px;height:8px;border-radius:50%;background:#c084fc;flex-shrink:0"></div><span class="tname">Bat</span><span class="tsub">Acoustic Information Civilization · α=0.30</span></div>
+          <div class="tdom">Resonance computing · Echolocation networks · Wave-based navigation</div>
+          <div class="tbio">
+            <p style="font-size:13px;margin-bottom:8px">Perception built on wave return. No visual displays — information is encoded in wave interference patterns. Their geographic information system is an echo-terrain map of the world.</p>
+            <div class="blueprint" style="margin:0">
+              <div class="bp-label">What bats would actually build</div>
+              <div class="bp-items">
+                <span class="bp-item" style="color:#c084fc;border-color:rgba(192,132,252,.25)">Sonar Relay Tower</span>
+                <span class="bp-item" style="color:#c084fc;border-color:rgba(192,132,252,.25)">Wave-Interference Processor</span>
+                <span class="bp-item" style="color:#c084fc;border-color:rgba(192,132,252,.25)">Echo-Terrain Map (GIS)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tax-card" onclick="toggleTax(this,'octopus')">
+          <div class="tax-head"><div style="width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0"></div><span class="tname">Octopus</span><span class="tsub">Adaptive Morphological Civilization · α=0.60</span></div>
+          <div class="tdom">Fluid architecture · Haptic webs · Chromatophore communication</div>
+          <div class="tbio">
+            <p style="font-size:13px;margin-bottom:8px">Distributed neural architecture — two-thirds of their neurons live in their arms, not their brain. Intelligence is embedded in the body. Engineering would be fluid, self-reconfiguring, and touch-based.</p>
+            <div class="blueprint" style="margin:0">
+              <div class="bp-label">What octopuses would actually build</div>
+              <div class="bp-items">
+                <span class="bp-item" style="color:#4ade80;border-color:rgba(74,222,128,.25)">Adaptive Morphic Structure</span>
+                <span class="bp-item" style="color:#4ade80;border-color:rgba(74,222,128,.25)">Chromatophore Grid Display</span>
+                <span class="bp-item" style="color:#4ade80;border-color:rgba(74,222,128,.25)">Distributed Haptic Web</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div style="margin-top:32px">
+      <h3>Side-by-Side Comparison</h3>
+      <div class="card" style="padding:0;overflow:hidden;overflow-x:auto">
+        <table class="etpt-table">
+          <thead>
+            <tr><th>Civilization</th><th>Biology</th><th>Perception</th><th>Technology Domain</th><th>α</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:#60a5fa">Anthropogenic (Human)</td>
+              <td>High-node, centralised brain</td>
+              <td>Visual / Symbolic · 120° frontal</td>
+              <td>Digital · Symbolic · Mechanical</td>
+              <td style="color:#60a5fa">0.45</td>
+            </tr>
+            <tr>
+              <td style="color:#fb923c">Formic (Ant Swarm)</td>
+              <td>Distributed, low-node units</td>
+              <td>Chemical / Collective · Pheromone gradient</td>
+              <td>Bio-coordination · Living structures · Chem memory</td>
+              <td style="color:#fb923c">0.85</td>
+            </tr>
+            <tr>
+              <td style="color:#c084fc">Chiropteran (Bat)</td>
+              <td>Medium-node, sonar-specialised</td>
+              <td>Acoustic / Wave · 20–200 kHz range</td>
+              <td>Resonance computing · Echo maps · Sonar relay</td>
+              <td style="color:#c084fc">0.30</td>
+            </tr>
+            <tr>
+              <td style="color:#4ade80">Cephalopod (Octopus)</td>
+              <td>Distributed neural · 2/3 mass in arms</td>
+              <td>Haptic / Morphological · Skin-embedded</td>
+              <td>Fluid architecture · Haptic webs · Chroma-display</td>
+              <td style="color:#4ade80">0.60</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ REVERSE INFERENCE ══ -->
+  <section>
+    <span class="section-tag">Reverse Inference Principle</span>
+    <h2>Reading an Unknown Technology Backward</h2>
+
+    <p>ETPT also works in reverse. Instead of predicting what technology a <em class="hl">known</em> species builds, you can start from an <em class="hl">unknown</em> artifact or signal and work backward to hypothesize the biology behind it.</p>
+
+    <p>This could matter for understanding poorly-understood biological structures on Earth — or, eventually, for interpreting signals we don't yet recognise.</p>
+
+    <div class="g2" style="margin-top:24px">
+      <div class="inf-card">
+        <div class="inf-icon" style="color:#fb923c">◎</div>
+        <div class="inf-lbl">Observed Signal</div>
+        <div class="inf-sig">Distributed system · No central control point · Self-coordinating</div>
+        <div class="inf-lbl" style="color:#fb923c">Inferred Architecture</div>
+        <div class="inf-arch">Swarm-Oriented Cognition — collective chemical perception</div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-icon" style="color:#c084fc">∿</div>
+        <div class="inf-lbl">Observed Signal</div>
+        <div class="inf-sig">Recursive wave harmonics · No symbolic encoding layer present</div>
+        <div class="inf-lbl" style="color:#c084fc">Inferred Architecture</div>
+        <div class="inf-arch">Acoustic-Primary Perception — wave-based information processing</div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-icon" style="color:#4ade80">⌁</div>
+        <div class="inf-lbl">Observed Signal</div>
+        <div class="inf-sig">Morphological fluidity · Adaptive load distribution · No rigid frame</div>
+        <div class="inf-lbl" style="color:#4ade80">Inferred Architecture</div>
+        <div class="inf-arch">Haptic / Dynamic Evolution — distributed body intelligence</div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-icon" style="color:#60a5fa">⊞</div>
+        <div class="inf-lbl">Observed Signal</div>
+        <div class="inf-sig">Symbolic redundancy · Hierarchical node structure · Linear encoding</div>
+        <div class="inf-lbl" style="color:#60a5fa">Inferred Architecture</div>
+        <div class="inf-arch">Visual-Symbolic High-Node Cognition — familiar territory</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ TSUKUBA BRIDGE ══ -->
+  <section id="tsukuba">
+    <span class="section-tag">Implementation and Vision</span>
+    <h2>The Perceptual Bottleneck — and Why Tsukuba</h2>
+
+    <p>Everything in ETPT leads to one conclusion. The primary bottleneck in human civilizational development is not intelligence, not resources, not political will. <em class="hl">It is perception.</em></p>
+
+    <p>We are locked inside a fixed sensory bandwidth — and our technology is locked with us.</p>
+
+    <div class="g2" style="margin-top:24px">
+      <div class="card">
+        <h3 style="color:#60a5fa">The Human P is Fixed</h3>
+        <p style="font-size:13px">Eyes: 380–750nm. Ears: 20–20,000 Hz. Touch: surface contact only. Every technology we have ever built lives within those limits.</p>
+        <p style="font-size:13px;margin-top:8px">We have visualised quantum mechanics but never <em class="hl">felt</em> it. We have modelled spacetime curvature but never <em class="hl">touched</em> it. The equations exist. The experience does not.</p>
+        <p style="font-size:13px;margin-top:8px">And experience — not abstraction — is what drives intuition. And intuition is what drives genuine innovation.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#4ade80">What Haptics Can Do</h3>
+        <p style="font-size:13px">Haptic interfaces and augmented reality systems are the only known technology class that can artificially <em class="hl">expand the human P variable beyond its biological baseline.</em></p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;color:#8da0ba;padding:7px 12px;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.12);border-radius:6px">Laser haptics — mid-air tactile feedback with no physical contact</div>
+          <div style="font-size:12px;color:#8da0ba;padding:7px 12px;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.12);border-radius:6px">LED pouch motors — distributed skin-surface actuation</div>
+          <div style="font-size:12px;color:#8da0ba;padding:7px 12px;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.12);border-radius:6px">Pneumatic arrays — pressure gradients and material resistance</div>
+          <div style="font-size:12px;color:#8da0ba;padding:7px 12px;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.12);border-radius:6px">AR force simulation — felt environments beyond physical reality</div>
+        </div>
+        <p style="font-size:12px;color:#4a6080;margin-top:10px">These are not comfort technologies. They are perceptual expansion infrastructure.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;padding:24px;background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:14px">
+      <h3 style="color:#60a5fa;margin-bottom:14px">Why Prof. Takefumi Hiraki. Why Tsukuba.</h3>
+      <p style="font-size:14px">Prof. Hiraki's laboratory at the University of Tsukuba sits at exactly this intersection. The work on haptic simulation and AR force environments is — from an ETPT perspective — <em class="hl">the most important engineering research currently being done.</em></p>
+      <p style="font-size:14px;margin-top:12px">Not because it builds new tools. Because it expands the sensory aperture through which all future tools will be conceived. It is the only engineering path that can actually shift human T<sub>dir</sub> into domains currently invisible to our species.</p>
+    </div>
+
+    <!-- THE VISION -->
+    <div style="margin-top:36px">
+      <span class="section-tag">The Vision</span>
+      <div style="padding:28px 30px;background:rgba(0,0,0,.3);border:1px solid rgba(96,165,250,.15);border-radius:14px;position:relative">
+        <div style="font-size:32px;color:rgba(96,165,250,.2);font-family:Georgia;position:absolute;top:16px;left:20px">"</div>
+        <p style="font-size:16px;color:#c8d8f0;line-height:1.85;padding-left:20px;font-style:italic">
+          I want to build a simulation where a student can physically feel the resistance of spacetime as a haptic gradient. I want them to touch the pressure curves in an ETPT divergence model — to feel the Comfort Trap as a force pulling back on their hand.
+        </p>
+        <p style="font-size:16px;color:#c8d8f0;line-height:1.85;padding-left:20px;margin-top:12px;font-style:italic">
+          If you can <em class="hl">feel</em> the equation, you understand it differently than if you only read it.
+        </p>
+        <p style="font-size:13px;color:#4a6080;margin-top:16px;padding-left:20px">That is what I am going to Tsukuba to build.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══ ORIGIN ══ -->
+  <section>
+    <span class="section-tag">Origin Statement</span>
+    <h2>How This Was Built</h2>
+    <div class="g2">
+      <div>
+        <p>ETPT was developed during a drop year in Hospet, Karnataka — without a laptop, without institutional affiliation, without lab access of any kind.</p>
+        <p>The original framework — including the ODE derivation, boundary conditions, and all four archetype blueprints — exists in handwritten notes. The thinking came first. The formalization came after. Nothing was retrofitted.</p>
+        <p>The mathematical structure was derived by hand and checked against the boundary conditions before any digital version existed. This document and this website came later.</p>
+        <div class="card-quote" style="margin-top:16px">
+          <p style="font-size:13px;color:#8da0ba;font-style:italic">"Due to hardware limitations during my research period, this framework was developed through manual derivation and mental simulation. This document is the Blueprint. The University of Tsukuba is where I intend to build the Hardware."</p>
+        </div>
+      </div>
+      <div>
+        <div class="origin-row"><span class="okey">Name</span><span class="oval">S R Tulasi Krishna</span></div>
+        <div class="origin-row"><span class="okey">Origin</span><span class="oval">Hospet, Karnataka, India</span></div>
+        <div class="origin-row"><span class="okey">Background</span><span class="oval">PCMB — Physics, Chemistry, Mathematics, Biology</span></div>
+        <div class="origin-row"><span class="okey">Status</span><span class="oval">Drop year · Independent research · No institutional affiliation</span></div>
+        <div class="origin-row"><span class="okey">Period</span><span class="oval">2024–2025</span></div>
+        <div class="origin-row"><span class="okey">Method</span><span class="oval">Manual derivation · Handwritten notes · Mental simulation</span></div>
+        <div class="origin-row"><span class="okey">Prototype</span><span class="oval">Built using AI-assisted development from conceptual specification</span></div>
+        <div class="origin-row"><span class="okey">Next Step</span><span class="oval">Agent-based simulation · Haptic interface design · Experimental validation</span></div>
+        <div class="origin-row"><span class="okey">Target Lab</span><span class="oval">Prof. Takefumi Hiraki · Haptic & AR Lab · University of Tsukuba</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(255,255,255,.055);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:#1e2d45;font-family:'JetBrains Mono',monospace">
+    <span>Evolutionary Technology Path Theory · ETPT</span>
+    <span>S R Tulasi Krishna · Hospet, Karnataka · 2024–2025</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<script>
+const CIVS=[
+  {id:"human",  label:"Human",    alpha:0.45,D:0.9,color:"#60a5fa",radar:[95,90,15,10,30,25]},
+  {id:"ant",    label:"Ant Swarm",alpha:0.85,D:0.7,color:"#fb923c",radar:[5,20,10,95,30,98]},
+  {id:"bat",    label:"Bat",      alpha:0.3, D:0.6,color:"#c084fc",radar:[20,15,95,10,25,35]},
+  {id:"octopus",label:"Octopus",  alpha:0.6, D:0.8,color:"#4ade80",radar:[10,40,20,50,95,30]},
+];
+const DIMS=["Symbolic","Mechanical","Acoustic","Chemical","Haptic","Collective"];
+
+let activeCiv=null, activeRadar=null;
+let curveChart=null, radarChart=null;
+
+function ha(hex,a){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+function tMag(alpha,D,S){return D*(1-Math.exp(-alpha*S));}
+function mkL(sMax){return Array.from({length:60},(_,i)=>parseFloat(((i/59)*sMax).toFixed(1)));}
+
+function initCharts(){
+  // CURVE
+  const cc=document.getElementById("curveChart");
+  if(!cc)return;
+  curveChart=new Chart(cc.getContext("2d"),{
+    type:"line",
+    data:{
+      labels:mkL(12),
+      datasets:CIVS.map(c=>({
+        label:c.label,
+        data:mkL(12).map(s=>parseFloat(tMag(c.alpha,c.D,s).toFixed(4))),
+        borderColor:c.color,backgroundColor:"transparent",
+        borderWidth:2,pointRadius:0,tension:0.3
+      }))
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          mode:"index",intersect:false,
+          callbacks:{
+            title:items=>`Survival Pressure S = ${items[0].label}`,
+            label:item=>`${item.dataset.label}: ${Number(item.raw).toFixed(3)}`
+          },
+          backgroundColor:"#07111e",
+          titleColor:"#4a6080",
+          bodyColor:"#dde4f0",
+          borderColor:"rgba(255,255,255,.08)",
+          borderWidth:1,
+          padding:10,
+        }
+      },
+      scales:{
+        x:{
+          grid:{color:"rgba(255,255,255,.035)"},
+          ticks:{color:"#3d5a7a",maxTicksLimit:8,font:{family:"'JetBrains Mono',monospace",size:10}},
+          title:{display:true,text:"Survival Pressure (S)",color:"#3d5a7a",font:{size:11}}
+        },
+        y:{
+          grid:{color:"rgba(255,255,255,.035)"},
+          ticks:{color:"#3d5a7a",font:{family:"'JetBrains Mono',monospace",size:10}},
+          min:0,max:1,
+          title:{display:true,text:"Development Intensity (T_mag)",color:"#3d5a7a",font:{size:11}}
+        }
+      }
+    }
+  });
+
+  // RADAR
+  const rc=document.getElementById("radarChart");
+  if(!rc)return;
+  radarChart=new Chart(rc.getContext("2d"),{
+    type:"radar",
+    data:{
+      labels:DIMS,
+      datasets:CIVS.map(c=>({
+        label:c.label,data:c.radar,
+        borderColor:c.color,backgroundColor:ha(c.color,0.07),
+        borderWidth:1.5,pointRadius:2,pointBackgroundColor:c.color,
+        pointHoverRadius:4
+      }))
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:"#07111e",
+          titleColor:"#4a6080",
+          bodyColor:"#dde4f0",
+          borderColor:"rgba(255,255,255,.08)",
+          borderWidth:1,
+          callbacks:{label:item=>`${item.dataset.label}: ${item.raw}`}
+        }
+      },
+      scales:{r:{
+        grid:{color:"rgba(255,255,255,.055)"},
+        angleLines:{color:"rgba(255,255,255,.055)"},
+        ticks:{display:false},
+        pointLabels:{color:"#4a6080",font:{size:10,family:"'JetBrains Mono',monospace"}},
+        min:0,max:100
+      }}
+    }
+  });
+}
+
+function updateCurve(){
+  if(!curveChart)return;
+  const sMax=parseFloat(document.getElementById("sSlider").value);
+  document.getElementById("sVal").textContent=sMax;
+  const lbls=mkL(sMax);
+  curveChart.data.labels=lbls;
+  CIVS.forEach((c,i)=>{
+    const op=activeCiv?(activeCiv===c.id?1:0.1):1;
+    curveChart.data.datasets[i].data=lbls.map(s=>parseFloat(tMag(c.alpha,c.D,s).toFixed(4)));
+    curveChart.data.datasets[i].borderColor=ha(c.color,op);
+    curveChart.data.datasets[i].borderWidth=activeCiv===c.id?3:1.5;
+  });
+  curveChart.update("none");
+}
+
+function toggleCiv(id){
+  activeCiv=activeCiv===id?null:id;
+  if(!curveChart)return;
+  CIVS.forEach((c,i)=>{
+    const op=activeCiv?(activeCiv===c.id?1:0.1):1;
+    curveChart.data.datasets[i].borderColor=ha(c.color,op);
+    curveChart.data.datasets[i].borderWidth=activeCiv===c.id?3:1.5;
+    const card=document.getElementById("cc-"+c.id);
+    card.style.opacity=activeCiv&&activeCiv!==c.id?"0.35":"1";
+    card.style.borderColor=activeCiv===c.id?ha(c.color,0.5):"rgba(255,255,255,.06)";
+    card.style.background=activeCiv===c.id?ha(c.color,0.07):"rgba(255,255,255,.02)";
+  });
+  curveChart.update();
+}
+
+function toggleRadar(id){
+  activeRadar=activeRadar===id?null:id;
+  if(!radarChart)return;
+  CIVS.forEach((c,i)=>{
+    const op=activeRadar?(activeRadar===c.id?1:0.08):1;
+    const fop=activeRadar?(activeRadar===c.id?0.18:0.02):0.07;
+    radarChart.data.datasets[i].borderColor=ha(c.color,op);
+    radarChart.data.datasets[i].backgroundColor=ha(c.color,fop);
+    radarChart.data.datasets[i].pointBackgroundColor=ha(c.color,op);
+    const items=document.querySelectorAll(".rli");
+    if(items[i])items[i].style.opacity=activeRadar&&activeRadar!==c.id?"0.25":"1";
+  });
+  radarChart.update();
+}
+
+function toggleTax(el,id){
+  const bio=el.querySelector(".tbio");
+  const was=bio.style.display==="block";
+  document.querySelectorAll(".tbio").forEach(b=>b.style.display="none");
+  document.querySelectorAll(".tax-card").forEach(c=>{
+    c.style.borderColor="rgba(255,255,255,.05)";
+    c.style.background="rgba(255,255,255,.02)";
+  });
+  if(!was){
+    bio.style.display="block";
+    const civ=CIVS.find(c=>c.id===id);
+    el.style.borderColor=ha(civ.color,0.35);
+    el.style.background=ha(civ.color,0.06);
+    toggleRadar(id);
+  } else {
+    toggleRadar(null);
+  }
+}
+
+function goto(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"});}
+
+// Init
+window.addEventListener("load",function(){
+  initCharts();
+  setTimeout(()=>document.getElementById("page").classList.add("show"),80);
+});
+</script>
+</body>
+</html>
